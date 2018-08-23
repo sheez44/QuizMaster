@@ -1,2 +1,0 @@
-# QuizMaster
-Created with CodeSandbox
