@@ -20,13 +20,32 @@ class QuizContainer extends React.Component {
     });
   };
 
+  resetQuestions = () => {
+    this.setState({
+      currentQuestion: 1
+    });
+  };
+
   render() {
+    const isRunning = this.state.currentQuestion <= 3;
+
     return (
-      <Questions
-        currentQuestion={this.state.currentQuestion}
-        updateCurrentQuestion={this.updateCurrentQuestion}
-        quizQuestions={quizQuestions}
-      />
+      <div>
+        {isRunning ? (
+          <Questions
+            currentQuestion={this.state.currentQuestion}
+            updateCurrentQuestion={this.updateCurrentQuestion}
+            quizQuestions={quizQuestions}
+          />
+        ) : (
+          <div>
+            <h1>Quiz ended</h1>
+            <a href="#" onClick={this.resetQuestions}>
+              reset
+            </a>
+          </div>
+        )}
+      </div>
     );
   }
 }
