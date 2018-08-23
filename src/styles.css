@@ -2,3 +2,10 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+.button {
+  height: 50px;
+  width: auto;
+  display: block;
+  background-color: green;
+}
