@@ -10,15 +10,32 @@ export class Quiz extends React.Component {
     this.state = {
       currentQuestion: 1,
       amountOfQuestions: this.props.amountOfQuestions,
-      questions: quizQuestions
+      questions: quizQuestions,
+      userAnswer: null,
+      userAnswers: [],
+      correctAnswers: 0
     };
   }
 
   updateCurrentQuestion = () => {
-    const { currentQuestion, amountOfQuestions, questions } = this.state;
+    const {
+      currentQuestion,
+      amountOfQuestions,
+      questions,
+      userAnswers,
+      userAnswer
+    } = this.state;
     const { setGamestate } = this.props;
 
-    console.log(currentQuestion, amountOfQuestions);
+    if (questions["q" + currentQuestion].answer === userAnswer) {
+      this.setState({
+        correctAnswers: (this.state.correctAnswers += 1)
+      });
+    }
+
+    userAnswers.push(userAnswer);
+
+    console.log(this.state.correctAnswers, userAnswers);
 
     if (currentQuestion === amountOfQuestions) {
       setGamestate("postQuiz");
@@ -39,18 +56,6 @@ export class Quiz extends React.Component {
     this.setState({
       userAnswer: event.target.value
     });
-  }
-
-  componentWillMount() {
-    console.log("willmount:" + this.state.userAnswer);
-  }
-
-  componentDidMount() {
-    console.log("did mount:" + this.state.userAnswer);
-  }
-
-  componentDidUpdate() {
-    console.log("did update:" + this.state.userAnswer);
   }
 
   render() {
@@ -80,7 +85,7 @@ export class Quiz extends React.Component {
           })}
         </ul>
         <Button
-          updateCurrentQuestion={this.updateCurrentQuestion}
+          onClick={this.updateCurrentQuestion}
           buttonText="Next.js"
           disabled={this.state.buttonDisabled}
         />
