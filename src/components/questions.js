@@ -1,20 +1,41 @@
 import React from "react";
 
 import Button from "./button";
+import { quizQuestions } from "../quiz";
 
 export class Questions extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      questions: this.props.quizQuestions,
-      userAnswer: null
+      currentQuestion: 1,
+      amountOfQuestions: this.props.amountOfQuestions,
+      questions: quizQuestions
     };
   }
 
+  updateCurrentQuestion = () => {
+    const { currentQuestion, amountOfQuestions, questions } = this.state;
+    const { setGamestate } = this.props;
+
+    console.log(currentQuestion, amountOfQuestions);
+
+    if (currentQuestion === amountOfQuestions) {
+      setGamestate("ended");
+    }
+
+    this.setState({
+      currentQuestion: (this.state.currentQuestion += 1)
+    });
+  };
+
+  resetQuestions = () => {
+    this.setState({
+      currentQuestion: 1
+    });
+  };
+
   handleChange(event) {
-    // const { questions } = this.state
-    // const answer = questions["q" + this.props.currentQuestion].answer
     this.setState({
       userAnswer: event.target.value
     });
@@ -33,14 +54,13 @@ export class Questions extends React.Component {
   }
 
   render() {
-    const { currentQuestion } = this.props;
-    const { questions } = this.state;
+    const { currentQuestion, questions } = this.state;
     const question = questions["q" + currentQuestion];
 
     return (
       <div>
         <h2>
-          {`Question ${currentQuestion}:`}{" "}
+          {`Question ${currentQuestion}: `}
           {questions["q" + currentQuestion].question}
         </h2>
         <ul>
@@ -60,8 +80,9 @@ export class Questions extends React.Component {
           })}
         </ul>
         <Button
-          updateCurrentQuestion={this.props.updateCurrentQuestion}
+          updateCurrentQuestion={this.updateCurrentQuestion}
           buttonText="Next.js"
+          disabled={this.state.buttonDisabled}
         />
       </div>
     );

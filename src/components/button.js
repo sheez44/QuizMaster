@@ -15,12 +15,13 @@ export default function Button(props) {
   };
 
   return (
-    <a
+    <button
       onClick={props.updateCurrentQuestion}
       className="button"
       style={buttonStyling}
+      disabled={props.disabled}
     >
       {props.buttonText}
-    </a>
+    </button>
   );
 }
