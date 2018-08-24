@@ -23,19 +23,30 @@ class QuizContainer extends React.Component {
 
     return (
       <div>
-        {gameState === "quiz" ? (
-          <Questions
-            setGamestate={this.setGamestate}
-            amountOfQuestions={this.props.amountOfQuestions}
-          />
-        ) : (
-          <div>
-            <h1>Quiz ended</h1>
-            <a href="#" onClick={this.resetQuestions}>
-              reset
-            </a>
-          </div>
-        )}
+        {(() => {
+          switch (gameState) {
+            case "quiz":
+              return (
+                <Questions
+                  setGamestate={this.setGamestate}
+                  amountOfQuestions={this.props.amountOfQuestions}
+                />
+              );
+            case "login":
+              return null;
+            case "end":
+              return (
+                <div>
+                  <h1>Quiz ended</h1>
+                  <a href="#" onClick={this.resetQuestions}>
+                    reset
+                  </a>
+                </div>
+              );
+            default:
+              return null;
+          }
+        })()}
       </div>
     );
   }

@@ -21,7 +21,7 @@ export class Questions extends React.Component {
     console.log(currentQuestion, amountOfQuestions);
 
     if (currentQuestion === amountOfQuestions) {
-      setGamestate("ended");
+      setGamestate("end");
     }
 
     this.setState({
