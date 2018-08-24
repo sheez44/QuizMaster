@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { Questions } from "./components/questions";
+import { Quiz } from "./components/Quiz";
+import { PostQuiz } from "./components/PostQuiz";
 
 class QuizContainer extends React.Component {
   constructor(props) {
@@ -25,24 +26,20 @@ class QuizContainer extends React.Component {
       <div>
         {(() => {
           switch (gameState) {
+            case "login":
+              return null;
+
             case "quiz":
               return (
-                <Questions
+                <Quiz
                   setGamestate={this.setGamestate}
                   amountOfQuestions={this.props.amountOfQuestions}
                 />
               );
-            case "login":
-              return null;
-            case "end":
-              return (
-                <div>
-                  <h1>Quiz ended</h1>
-                  <a href="#" onClick={this.resetQuestions}>
-                    reset
-                  </a>
-                </div>
-              );
+
+            case "postQuiz":
+              return <PostQuiz />;
+
             default:
               return null;
           }

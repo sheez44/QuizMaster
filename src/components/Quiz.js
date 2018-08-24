@@ -3,7 +3,7 @@ import React from "react";
 import Button from "./button";
 import { quizQuestions } from "../quiz";
 
-export class Questions extends React.Component {
+export class Quiz extends React.Component {
   constructor(props) {
     super(props);
 
@@ -21,7 +21,7 @@ export class Questions extends React.Component {
     console.log(currentQuestion, amountOfQuestions);
 
     if (currentQuestion === amountOfQuestions) {
-      setGamestate("end");
+      setGamestate("postQuiz");
     }
 
     this.setState({
