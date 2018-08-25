@@ -7,12 +7,12 @@ export class PostQuiz extends React.Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <h1>Quiz ended</h1>
         <a href="#" onClick={this.resetQuestions}>
           reset
         </a>
-      </div>
+      </React.Fragment>
     );
   }
 }

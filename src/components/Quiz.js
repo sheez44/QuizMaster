@@ -35,8 +35,6 @@ export class Quiz extends React.Component {
 
     userAnswers.push(userAnswer);
 
-    console.log(this.state.correctAnswers, userAnswers);
-
     if (currentQuestion === amountOfQuestions) {
       setGamestate("postQuiz");
     }
@@ -60,10 +58,12 @@ export class Quiz extends React.Component {
 
   render() {
     const { currentQuestion, questions } = this.state;
+    const { getGamestate } = this.props;
     const question = questions["q" + currentQuestion];
 
     return (
-      <div>
+      <React.Fragment>
+        if(getGamestate() === "quiz") (
         <h2>
           {`Question ${currentQuestion}: `}
           {questions["q" + currentQuestion].question}
@@ -89,7 +89,7 @@ export class Quiz extends React.Component {
           buttonText="Next.js"
           disabled={this.state.buttonDisabled}
         />
-      </div>
+      </React.Fragment>
     );
   }
 }

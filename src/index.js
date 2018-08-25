@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 import { Quiz } from "./components/Quiz";
 import { PostQuiz } from "./components/PostQuiz";
 
+import "./css/styles.css";
+
 class QuizContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -19,32 +21,23 @@ class QuizContainer extends React.Component {
     });
   };
 
+  getGamestate = () => this.state.gameState;
+
   render() {
     const { gameState } = this.state;
 
     return (
-      <div>
-        {(() => {
-          switch (gameState) {
-            case "login":
-              return null;
-
-            case "quiz":
-              return (
-                <Quiz
-                  setGamestate={this.setGamestate}
-                  amountOfQuestions={this.props.amountOfQuestions}
-                />
-              );
-
-            case "postQuiz":
-              return <PostQuiz />;
-
-            default:
-              return null;
-          }
-        })()}
-      </div>
+      <React.Fragment>
+        {gameState === "login" ? (
+          <h1>Login</h1>
+        ) : (
+          <Quiz
+            setGamestate={this.setGamestate}
+            getGamestate={this.getGamestate}
+            amountOfQuestions={this.props.amountOfQuestions}
+          />
+        )}
+      </React.Fragment>
     );
   }
 }
