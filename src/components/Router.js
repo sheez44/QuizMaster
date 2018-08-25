@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Quiz from "./Quiz";
-import NotFound from "./NotFound";
+import Login from "./Login";
 
 const Router = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={Quiz} />
-      <Route component={NotFound} />
+      <Route component={Login} />
     </Switch>
   </BrowserRouter>
 );

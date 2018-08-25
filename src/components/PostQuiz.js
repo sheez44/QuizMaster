@@ -1,16 +1,18 @@
-import React from "react";
+import React, { Component, Fragment } from "react";
 
-export class PostQuiz extends React.Component {
+class PostQuiz extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         <h1>Quiz ended</h1>
         <button onClick={this.resetQuestions}>reset</button>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
+
+export default PostQuiz;

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 
 import Button from "./button";
 import { quizQuestions } from "../quiz";
 
-export class Quiz extends React.Component {
+class Quiz extends Component {
   constructor(props) {
     super(props);
 
@@ -62,7 +62,7 @@ export class Quiz extends React.Component {
     const question = questions["q" + currentQuestion];
 
     return (
-      <React.Fragment>
+      <section className="quiz-container">
         <h2>
           {`Question ${currentQuestion}: `}
           {questions["q" + currentQuestion].question}
@@ -88,7 +88,9 @@ export class Quiz extends React.Component {
           buttonText="Next.js"
           disabled={this.state.buttonDisabled}
         />
-      </React.Fragment>
+      </section>
     );
   }
 }
+
+export default Quiz;
