@@ -63,7 +63,6 @@ export class Quiz extends React.Component {
 
     return (
       <React.Fragment>
-        if(getGamestate() === "quiz") (
         <h2>
           {`Question ${currentQuestion}: `}
           {questions["q" + currentQuestion].question}

@@ -9,9 +9,7 @@ export class PostQuiz extends React.Component {
     return (
       <React.Fragment>
         <h1>Quiz ended</h1>
-        <a href="#" onClick={this.resetQuestions}>
-          reset
-        </a>
+        <button onClick={this.resetQuestions}>reset</button>
       </React.Fragment>
     );
   }
