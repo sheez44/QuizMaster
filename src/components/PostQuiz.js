@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from "react";
 
 class PostQuiz extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   goToQuestions = () => {
     const { history } = this.props

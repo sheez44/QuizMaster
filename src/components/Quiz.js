@@ -13,7 +13,8 @@ class Quiz extends Component {
       questions: quizQuestions,
       userAnswer: null,
       userAnswers: [],
-      correctAnswers: 0
+      correctAnswers: 0,
+      buttonDisabled: true
     };
   }
 
@@ -22,20 +23,18 @@ class Quiz extends Component {
       currentQuestion,
       amountOfQuestions,
       questions,
-      userAnswers,
       userAnswer
     } = this.state;
     const { history } = this.props;
 
-    if (questions["q" + currentQuestion].answer === userAnswer) {
-      this.setState((prevState, props) => {      
-        return {
-          correctAnswers: (prevState.correctAnswers += 1)
-        }
-      });
-    }
-
-    userAnswers.push(userAnswer);
+    this.setState((prevState) => {      
+      return {
+        correctAnswers: questions["q" + currentQuestion].answer === userAnswer ? (prevState.correctAnswers += 1) : prevState.correctAnswers,
+        currentQuestion: (prevState.currentQuestion += 1),
+        buttonDisabled: true,
+        userAnswers: [...prevState.userAnswers, userAnswer]
+      }
+    });
 
     if (currentQuestion === amountOfQuestions) {
       history.push({
@@ -45,12 +44,6 @@ class Quiz extends Component {
         }
       })
     }
-
-    this.setState((prevState) => {
-      return {
-        currentQuestion: (prevState.currentQuestion += 1)
-      }      
-    });
   };
 
   resetQuestions = () => {
@@ -61,7 +54,8 @@ class Quiz extends Component {
 
   handleChange(event) {
     this.setState({
-      userAnswer: event.target.value
+      userAnswer: event.target.value,
+      buttonDisabled: false
     });
   }
 
