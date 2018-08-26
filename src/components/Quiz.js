@@ -9,7 +9,7 @@ class Quiz extends Component {
 
     this.state = {
       currentQuestion: 1,
-      amountOfQuestions: this.props.amountOfQuestions,
+      amountOfQuestions: 3,
       questions: quizQuestions,
       userAnswer: null,
       userAnswers: [],
@@ -25,10 +25,10 @@ class Quiz extends Component {
       userAnswers,
       userAnswer
     } = this.state;
-    const { setGamestate } = this.props;
+    const { history } = this.props;
 
     if (questions["q" + currentQuestion].answer === userAnswer) {
-      this.setState(prevState => {
+      this.setState((prevState, props) => {      
         return {
           correctAnswers: (prevState.correctAnswers += 1)
         }
@@ -38,10 +38,15 @@ class Quiz extends Component {
     userAnswers.push(userAnswer);
 
     if (currentQuestion === amountOfQuestions) {
-      setGamestate("postQuiz");
+      history.push({
+        pathname:"/postquiz",
+        state: {
+          ...this.state
+        }
+      })
     }
 
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return {
         currentQuestion: (prevState.currentQuestion += 1)
       }      
