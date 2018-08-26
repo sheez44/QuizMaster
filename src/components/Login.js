@@ -15,7 +15,6 @@ class Login extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
 
-    const { validated } = this.state
     const { history } = this.props
 
     const userName = this.myUsernameInput.current.value

@@ -28,8 +28,10 @@ class Quiz extends Component {
     const { setGamestate } = this.props;
 
     if (questions["q" + currentQuestion].answer === userAnswer) {
-      this.setState({
-        correctAnswers: (this.state.correctAnswers += 1)
+      this.setState(prevState => {
+        return {
+          correctAnswers: (prevState.correctAnswers += 1)
+        }
       });
     }
 
@@ -39,8 +41,10 @@ class Quiz extends Component {
       setGamestate("postQuiz");
     }
 
-    this.setState({
-      currentQuestion: (this.state.currentQuestion += 1)
+    this.setState(prevState => {
+      return {
+        currentQuestion: (prevState.currentQuestion += 1)
+      }      
     });
   };
 
@@ -58,7 +62,6 @@ class Quiz extends Component {
 
   render() {
     const { currentQuestion, questions } = this.state;
-    const { getGamestate } = this.props;
     const question = questions["q" + currentQuestion];
 
     return (
