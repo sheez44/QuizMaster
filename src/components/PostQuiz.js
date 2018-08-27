@@ -13,35 +13,39 @@ class PostQuiz extends Component {
 
   render() {
     const { correctAnswers, amountOfQuestions } = this.props.location.state
-    let performanceMessage
+    let performanceMessage, color
 
     switch(correctAnswers) {
       case 0 :
       case 1 : {
-        performanceMessage = "poor performance"
+        performanceMessage = "Shame, atonement is upon you!"
+        color = "red"
         break;
       }
       case 2: {
         performanceMessage = "well done!"
+        color = "blue"
         break;
       }
       case 3: {
         performanceMessage = "superB!"
+        color = "green"
         break;
       }
       default: {
         performanceMessage = "error, bad programming"
+        color = "deeppink"
       }
     }
 
     return (
-      <Fragment>
+      <div className="postquiz">
         <h1>Quiz ended</h1>
-        <p>You answered {correctAnswers} question{correctAnswers === 1 ? '' : '(s)'} out of {amountOfQuestions} correctly</p>
-        <p>{performanceMessage}</p>
+        <p>You answered {correctAnswers} out of {amountOfQuestions} question{correctAnswers === 1 ? '' : '(s)'} correctly</p>
+        <p style={{color}}>{performanceMessage}</p>
 
         <button onClick={this.goToQuestions}>reset</button>
-      </Fragment>
+      </div>
     );
   }
 }
